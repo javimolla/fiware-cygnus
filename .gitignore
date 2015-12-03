@@ -7,3 +7,9 @@ maven-deps/
 conf/agent_0.conf
 .DS_Store
 archived/
+
+# Eclipse local files
+.classpath
+.project
+.settings/
+bin/
