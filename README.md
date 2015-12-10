@@ -31,6 +31,7 @@ Current stable release is able to persist Orion context data in:
 * [STH](https://github.com/telefonicaid/IoT-STH), a Short-Term Historic database built on top of MongoDB.
 * [Kafka](http://kafka.apache.org/), the publish-subscribe messaging broker.
 * [DynamoDB](https://aws.amazon.com/dynamodb/), a cloud-based NoSQL database by [Amazon Web Services](https://aws.amazon.com/).
+* [PostgreSQL](http://www.postgresql.org/), a powerful, open source object-relational database system.
 
 You may consider to visit [Cygnus Quick Start Guide](doc/quick_start_guide.md) before going deep into the details.
 

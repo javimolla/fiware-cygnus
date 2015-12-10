@@ -122,6 +122,11 @@
       <artifactId>aws-java-sdk-dynamodb</artifactId>
       <version>1.10.32</version>
     </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>9.4-1205-jdbc4</version>
+    </dependency>
   </dependencies>
 
   <build>

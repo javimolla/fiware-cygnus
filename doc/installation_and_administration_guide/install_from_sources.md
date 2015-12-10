@@ -9,6 +9,7 @@ Content:
     * [OrionCKANSink dependencies](#ckandeps)
     * [OrionHDFSSink dependencies](#hdfsdeps)
     * [OrionMySQLSink dependencies](#mysqldeps)
+    * [OrionPostgreSQLSink dependencies](#postgresqldeps)
 
 ##<a name="prerequisites"></a>Prerequisites
 Maven (and thus Java SDK, since Maven is a Java tool) is needed in order to install Cygnus.
@@ -139,3 +140,9 @@ These are the packages you will need to install under `APACHE_FLUME_HOME/plugins
 
 [Top](#top)
 
+###<a name="postgresqldeps"></a>OrionPostgresQLSink dependencies
+These are the packages you will need to install under `APACHE_FLUME_HOME/plugins.d/cygnus/libext/` **if you did not included them in the Cygnus package**:
+
+* postgresql-9.4-1205-jdbc4.jar
+
+[Top](#top)

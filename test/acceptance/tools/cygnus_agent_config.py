@@ -121,8 +121,8 @@ class Agent:
     def source(self, **kwargs):
         """
         parameters values in source configuration
-        :param sink: sinks used (hdfs-sink mysql-sink ckan-sink)
-        :param channel: channels used (hdfs-channel mysql-channel ckan-channel)
+        :param sink: sinks used (hdfs-sink mysql-sink ckan-sink postgresql-sink)
+        :param channel: channels used (hdfs-channel mysql-channel ckan-channel postgresql-channel)
         :param cygnus_port: port used in each instance. It must be different in each instance
         :param default_service: tenant used by default
         :param default_service_path: service path used by default
@@ -336,6 +336,36 @@ class Agent:
         self.__append_command('sed -i "s/%s.data_model = .*/%s.data_model = %s/" %s/%s ' % (sth_sink, sth_sink, sth_data_model, self.target_path, self.name), self.target_path, self.sudo)
         self.__append_command('sed -i "s/%s.db_prefix = .*/%s.db_prefix = %s/" %s/%s ' % (sth_sink, sth_sink, db_prefix, self.target_path, self.name), self.target_path, self.sudo)
         self.__append_command('sed -i "s/%s.collection_prefix = .*/%s.collection_prefix = %s/" %s/%s ' % (sth_sink, sth_sink, collection_prefix, self.target_path, self.name), self.target_path, self.sudo)
+        return OPS_LIST
+
+    def config_postgresql_sink(self, **kwargs):
+        """
+        parameters values in postgresql sink
+        :param sink: sinks used postgresql-sink1, postgresql-sink2,...,postgresql-sinkN)
+        :param channel: specific channel(ckan-channel)
+        :param host: the FQDN/IP address where the PostgreSQL server runs
+        :param port: the port where the PostgreSQL server listes for incomming connections
+        :param user: a valid user in the PostgreSQL server
+        :param password:  password for the user above
+        :param persistence:  how the attributes are stored, either per row either per column (row, column)
+        """
+        self.postgresql_sink                 = kwargs.get(SINK, "postgresql-sink")
+        self.postgresql_channel              = kwargs.get(CHANNEL, "postgresql-channel")
+        self.postgresql_host                 = kwargs.get(HOST, LOCALHOST)
+        self.postgresql_port                 = kwargs.get(PORT, "3306")
+        self.postgresql_user                 = kwargs.get(USER, EMPTY)
+        self.postgresql_password             = kwargs.get(PASSWORD, EMPTY)
+        self.postgresql_persistence          = kwargs.get(PERSISTENCE, PERSISTENCE_COLUMN)
+
+        self.__append_command('sed -i "s/%s.sinks.postgresql-sink./%s.sinks.%s./" %s/%s ' % (self.id, self.id, self.postgresql_sink, self.target_path, self.name), self.target_path, self.sudo)
+        self.__append_command('sed -i "s/%s.channel = postgresql-channel/%s.channel = %s/" %s/%s ' % (self.postgresql_sink, self.postgresql_sink,self.postgresql_channel, self.target_path, self.name), self.target_path, self.sudo)
+        # replace all hdfs channel in configuration by a new one
+        self.__append_command('sed -i "s/.channels.postgresql-channel./.channels.%s./" %s/%s ' % (self.postgresql_channel, self.target_path, self.name), self.target_path, self.sudo)
+        self.__append_command('sed -i "s/.postgresql_host = .*/.postgresql_host = %s/" %s/%s ' % (self.postgresql_host, self.target_path, self.name), self.target_path, self.sudo)
+        self.__append_command('sed -i "s/.postgresql_port = .*/.postgresql_port = %s/" %s/%s ' % (self.postgresql_port, self.target_path, self.name), self.target_path, self.sudo)
+        self.__append_command('sed -i "s/.postgresql_username = .*/.postgresql_username = %s/" %s/%s ' % (self.postgresql_user, self.target_path, self.name), self.target_path, self.sudo)
+        self.__append_command('sed -i "s/.postgresql_password = .*/.postgresql_password = %s/" %s/%s ' % (self.postgresql_password, self.target_path, self.name), self.target_path, self.sudo)
+        self.__append_command('sed -i "s/%s.attr_persistence = .*/%s.attr_persistence = %s/" %s/%s ' % (self.postgresql_sink, self.postgresql_sink, self.postgresql_persistence, self.target_path, self.name), self.target_path, self.sudo)
         return OPS_LIST
 
     def config_channel(self, channel, **kwargs):

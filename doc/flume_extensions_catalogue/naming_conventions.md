@@ -27,6 +27,14 @@ MySQL, like any other relational database, organizes the data in tables within d
     | <fiware_service> |---1:N---| <fiware_servicePath>_<extracted_entity_name> |
     --------------------         ------------------------------------------------
 
+### PostgreSQL data organization
+Similar to MySQL but with three levels: `fiware-service` (database name), `fiware-servicePath` (schema name) and  the `entity_name` (table name).
+
+    databases:                   schemas:                         tables:
+    --------------------         ------------------------         ---------------------------
+    | <fiware_service> |---1:N---| <fiware_servicePath> |---1:N---| <extracted_entity_name> |
+    --------------------         ------------------------         ---------------------------
+
 ### CKAN data organization
 CKAN perfectly fits the three-level data organization through the organization, package and resource concepts:
 

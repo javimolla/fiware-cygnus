@@ -45,12 +45,12 @@
 # - regex: Java-like regular expression to be applied on the concatenated fields. Special characters like '\' must be
 #   escaped ('\' is escaped as "\\").
 # - destination: Name of the HDFS file or CKAN resource where the data will be effectively persisted. In the case of
-#   MySQL, Mongo and STH, this sufixes the table/collection name.
+#   PostgreSQL, MySQL, Mongo and STH, this sufixes the table/collection name.
 #   Please, have a look to doc/design/naming_conventions.md for more details.
 # - fiware_service_path: New fiware-servicePath replacing the notified one. The sinks will translate this into the name
-#   of the HDFS folder or CKAN package where the above destination entity will be placed. In the case of MySQL, Mongo
-#   and STH, this prefixes the table/collection name. Please, have a look to doc/design/naming_conventions.md for more
-# details.
+#   of the HDFS folder or CKAN package where the above destination entity will be placed. In the case of PostgreSQL, 
+#   MySQL, Mongo and STH, this prefixes the table/collection name. Please, have a look to 
+# doc/design/naming_conventions.md for more details.
 #
 # More detailed information regarding this feature can be found at:
 # https://github.com/telefonicaid/fiware-cygnus/blob/master/doc/design/interceptors.md#groupinginterceptor-interceptor

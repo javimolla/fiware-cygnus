@@ -13,6 +13,7 @@
     * [OrionMySQLSink](./orion_mysql_sink.md)
     * [OrionSTHSink](./orion_sth_sink.md)
     * [OrionTestSink](./orion_test_sink.md)
+    * [OrionPostgreSQLSink](./orion_postgresql_sink.md)
 * Interceptors
     * [GroupingInterceptor](./grouping_interceptor.md)
 * Channel selectors
